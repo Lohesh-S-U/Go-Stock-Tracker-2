@@ -1,0 +1,33 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f1f1f1;
+}
+
+header{
+  font-family: monospace;
+  background: white;
+}
+
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.post-details{
+  background-color: white;
+  margin: 2rem;
+}
+
+.error{
+  border: red;
+  margin: 0.5rem;
+  color: brown;
+}
+
