@@ -8,26 +8,275 @@ body {
   background: #f1f1f1;
 }
 
-header{
+header {
   font-family: monospace;
-  background: white;
+  background-color: #007bff;
+  padding: 16px 0;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.container{
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
 }
 
-.post-details{
-  background-color: white;
-  margin: 2rem;
+/* Title link styling */
+header h1 {
+  margin: 0;
+  font-size: 1.75em;
+}
+
+header .container a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header h1 a:hover {
+  color: #cce7ff;
+}
+
+/* Navbar styling */
+.nav-sidebar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* User and auth link styling */
+.nav-sidebar span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.nav-sidebar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-sidebar a:hover {
+  background-color: #0056b3;
+}
+
+/* Button styling for logout */
+.nav-sidebar button {
+  background-color: #ff5a5f;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.nav-sidebar button:hover {
+  background-color: #e14d4f;
+}
+
+.home {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+}
+
+/* Stock list styling */
+.stocks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual stock details styling */
+.stock-details {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stock-details h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.25em;
+}
+
+.stock-details p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.stock-details label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stock-details input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.stock-details button {
+  background-color: #ff5a5f;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.stock-details button:hover {
+  background-color: #e14d4f;
+}
+
+/* New stock form styling */
+.create-stock-form {
+  flex: 1;
+  height: fit-content;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-stock-form h2 {
+  color: #333;
+  font-size: 1.25em;
+  margin-top: 0;
+}
+
+.create-stock-form label {
+  display: block;
+  margin-top: 10px;
+  color: #555;
+  font-weight: bold;
+}
+
+.create-stock-form select,
+.create-stock-form input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.create-stock-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.create-stock-form button:hover {
+  background-color: #0056b3;
 }
 
 .error{
   border: red;
   margin: 0.5rem;
   color: brown;
+}
+
+.login, .signup {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login h3, .signup h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+  text-align: center;
+}
+
+/* Label styling */
+.login label, .signup label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Input styling */
+.login input[type="email"],
+.login input[type="password"],
+.signup input[type="email"],
+.signup input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+.login input:focus, .signup input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+.login button, .signup button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login button:disabled, .signup button:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
+}
+
+.login button:hover:not(:disabled), .signup button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.error {
+  color: #d9534f;
+  background-color: #f8d7da;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-top: 15px;
+  text-align: center;
 }
 

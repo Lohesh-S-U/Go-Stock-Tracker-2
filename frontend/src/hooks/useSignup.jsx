@@ -14,7 +14,7 @@ export const useSignup = () =>{
             method: 'POST',
             headers : {'Content-Type':'application/json'},
             body: JSON.stringify({email,password}),
-            credentials: 'same-origin',
+            credentials:'include',
         })
         
         const json = await response.json()

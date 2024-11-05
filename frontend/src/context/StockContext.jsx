@@ -6,7 +6,7 @@ export const stocksReducer = (state,action)=>{
     switch(action.type){
         case 'SET_STOCKS':
             return {
-                posts : action.payload
+                stocks : action.payload
             }
         
         default:

@@ -15,12 +15,12 @@ export default function Home() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                credentials: 'same-origin',
+                credentials:'include',
             });
             const json = await response.json();
 
             if (response.ok) {
-                dispatch({ type: "SET_STOCKS", payload: json });
+                dispatch({ type: "SET_STOCKS", payload: json.stocks });
             }
         };
 
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="home">
             <div className="stocks">
                 {stocks && stocks.map((stock) => (
-                    <StockDetails key={stock.id} stock={stock} />
+                    <StockDetails key={stock.ID} stock={stock} />
                 ))}
             </div>
             <StockForm />

@@ -16,9 +16,9 @@ export default function Navbar(){
                 <Link to='/'>
                     <h1>Go-Stock-Tracker</h1>
                 </Link>
-                <nav>
+                <nav className="nav-sidebar">
                     {user && (<div>
-                        <span>{user.email}</span>
+                        <span>{user.Email}</span>
                         <button onClick={handleClick}>Logout</button>
                     </div>)}
                     {!user && (<div>

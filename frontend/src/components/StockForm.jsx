@@ -10,6 +10,11 @@ const StockForm = () => {
     const [error, setError] = useState(null);
     const { user } = useAuthContext();
 
+    const companies = [
+        "MSFT", "IBM", "GE", "UNP", "COST", "MCD", "V", "WMT", "DIS",
+        "MMM", "INTC", "AXP", "AAPL", "BA", "CSCO", "GS", "JPM", "CRM", "VZ"
+    ];
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -19,29 +24,43 @@ const StockForm = () => {
         }
 
         const stock = { company, amount, price };
-        const res = await fetch("http://localhost:3000/api/buy", {
+
+        // First fetch request to buy stock
+        const buyResponse = await fetch("http://localhost:3000/api/buy", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(stock),
+            credentials: 'include',
         });
-        const response = await fetch("http://localhost:3000/api/get", {
+
+        if (!buyResponse.ok) {
+            const errorJson = await buyResponse.json();
+            setError(errorJson.error);
+            return;
+        }
+
+        // Second fetch request to get updated stocks
+        const getResponse = await fetch("http://localhost:3000/api/get", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: 'include',
         });
-        const json = await response.json();
 
-        if (!response.ok) {
-            setError(json.error);
-        } else {
+        const json = await getResponse.json();
+
+        if (getResponse.ok) {
+            // Clear the form and error, update stocks in context
             setCompany("");
             setAmount(0);
             setPrice(0);
             setError(null);
-            dispatch({ type: "SET_STOCKS", payload: json });
+            dispatch({ type: "SET_STOCKS", payload: json.stocks });
+        } else {
+            setError(json.error);
         }
     }
 
@@ -49,13 +68,19 @@ const StockForm = () => {
         <form className="create-stock-form" onSubmit={handleSubmit}>
             <h2>New Stock</h2>
 
-            <label htmlFor="company-input">Company:</label>
-            <input
-                id="company-input"
-                type="text"
+            <label htmlFor="company-select">Company:</label>
+            <select
+                id="company-select"
                 onChange={(e) => setCompany(e.target.value)}
                 value={company}
-            />
+            >
+                <option value="" disabled>Select a company</option>
+                {companies.map((comp) => (
+                    <option key={comp} value={comp}>
+                        {comp}
+                    </option>
+                ))}
+            </select>
 
             <label htmlFor="amount-input">Amount:</label>
             <input
@@ -63,6 +88,7 @@ const StockForm = () => {
                 type="number"
                 onChange={(e) => setAmount(parseInt(e.target.value))}
                 value={amount}
+                min="1"
             />
 
             <label htmlFor="price-input">Price:</label>
@@ -71,6 +97,7 @@ const StockForm = () => {
                 type="number"
                 onChange={(e) => setPrice(parseInt(e.target.value))}
                 value={price}
+                min="1"
             />
 
             <button>Buy Stock</button>
